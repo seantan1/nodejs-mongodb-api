@@ -1,6 +1,6 @@
 {
-  "name": "freya-donation-database-api",
-  "version": "2.0.0",
+  "name": "axiun-database-api",
+  "version": "1.0.0",
   "description": "Database API for freya donation",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,6 @@
     "mongodb",
     "express"
   ],
-  "author": "pururun",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -24,5 +23,15 @@
     "express": "^4.17.1",
     "mongoose": "^5.6.4",
     "mongoose-unique-validator": "^2.0.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seantan1/nodejs-mongodb-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seantan1/nodejs-mongodb-api/issues"
+  },
+  "homepage": "https://github.com/seantan1/nodejs-mongodb-api#readme",
+  "author": ""
 }
