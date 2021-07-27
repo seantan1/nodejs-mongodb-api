@@ -26,7 +26,7 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
     if (req.body.apikey == process.env.PRIVATE_API_KEY) {
         var image = new Image();
-        image.streamer_id = req.body.streamer_id ? req.body.streamer_id : image.streamer_id;
+        image.user_id = req.body.user_id ? req.body.user_id : image.user_id;
         image.image_link = req.body.image_link;
         // save the image and check for errors
         image.save(function (err) {
@@ -66,7 +66,7 @@ exports.update = function (req, res) {
         Image.findById(req.params.image_id, function (err, image) {
             if (err)
                 res.send(err);
-            image.streamer_id = req.body.streamer_id ? req.body.streamer_id : image.streamer_id;
+            image.user_id = req.body.user_id ? req.body.user_id : image.user_id;
             image.image_link = req.body.image_link;
             // save the image and check for errors
             image.save(function (err) {
@@ -102,11 +102,11 @@ exports.delete = function (req, res) {
     }
 };
 
-// Handle fetch all currencies by streamer_id
-exports.fetchImagesByStreamerId = function (req, res) {
+// Handle fetch all images by user_id
+exports.fetchImagesByUserId = function (req, res) {
     if (req.body.apikey == process.env.PRIVATE_API_KEY) {
         Image.find()
-        .where('streamer_id').equals(req.body.streamer_id)
+        .where('user_id').equals(req.body.user_id)
         .exec(function (err, images) {
             if (err) {
                 res.json({
@@ -125,126 +125,3 @@ exports.fetchImagesByStreamerId = function (req, res) {
         res.json('Not authorised');
     }
 };
-
-// Custom queries
-// Fetch top 5 ONE donation amount
-// exports.topONE = function (req, res) {
-//     Donation.find()
-//         .where('currency').equals('ONE')
-//         .sort({amount: 'desc'})
-//         .limit(5)
-//         .exec(function (err, donations) {
-//             if (err) {
-//                 res.json({
-//                     status: "error",
-//                     message: err,
-//                 });
-//             }
-//             res.json({
-//                 status: "success",
-//                 message: "Donations retrieved successfully",
-//                 data: donations
-//             });
-//         });
-// };
-
-// Fetch top 5 XYA donation amount
-// exports.topXYA = function (req, res) {
-//     Donation.find()
-//         .where('currency').equals('XYA')
-//         .sort({amount: 'desc'})
-//         .limit(5)
-//         .exec(function (err, donations) {
-//             if (err) {
-//                 res.json({
-//                     status: "error",
-//                     message: err,
-//                 });
-//             }
-//             res.json({
-//                 status: "success",
-//                 message: "Donations retrieved successfully",
-//                 data: donations
-//             });
-//         });
-// };
-
-// // Fetch top 5 recent donations
-// exports.recent = function (req, res) {
-//     Donation.find()
-//         .sort({_id: 'desc'})
-//         .limit(5)
-//         .exec(function (err, donations) {
-//             if (err) {
-//                 res.json({
-//                     status: "error",
-//                     message: err,
-//                 });
-//             }
-//             res.json({
-//                 status: "success",
-//                 message: "Donations retrieved successfully",
-//                 data: donations
-//             });
-//         });
-// };
-
-// // Fetch ONE donation leaderboard
-// exports.leaderboardONE = function (req, res) {
-//     Donation.find()
-//         .where('currency').equals('ONE')
-//         .sort({amount: 'desc'})
-//         .limit(100)
-//         .exec(function (err, donations) {
-//             if (err) {
-//                 res.json({
-//                     status: "error",
-//                     message: err,
-//                 });
-//             }
-//             res.json({
-//                 status: "success",
-//                 message: "Donations retrieved successfully",
-//                 data: donations
-//             });
-//         });
-// };
-
-// // Fetch XYA donation leaderboard
-// exports.leaderboardXYA = function (req, res) {
-//     Donation.find()
-//         .where('currency').equals('XYA')
-//         .sort({amount: 'desc'})
-//         .limit(100)
-//         .exec(function (err, donations) {
-//             if (err) {
-//                 res.json({
-//                     status: "error",
-//                     message: err,
-//                 });
-//             }
-//             res.json({
-//                 status: "success",
-//                 message: "Donations retrieved successfully",
-//                 data: donations
-//             });
-//         });
-// };
-
-// const imageIdExists = (image_id) => {
-//     image.find()
-//         .where('image_id').equals(image_id)
-//         .exec(function (err, images) {
-//             if (err) {
-//                 res.json({
-//                     status: "error",
-//                     message: err,
-//                 });
-//             }
-//             res.json({
-//                 status: "success",
-//                 message: "Donations retrieved successfully",
-//                 data: donations
-//             });
-//         });
-// }
